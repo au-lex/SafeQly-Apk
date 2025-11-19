@@ -1,24 +1,58 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { Stack } from 'expo-router';
-import { StatusBar } from 'expo-status-bar';
-import 'react-native-reanimated';
-
-import { useColorScheme } from '@/hooks/use-color-scheme';
-
-export const unstable_settings = {
-  anchor: '(tabs)',
-};
+import { useFonts } from "expo-font";
+import { Stack } from "expo-router";
+import { StatusBar } from "expo-status-bar";
+import { View, Text, ActivityIndicator } from "react-native";
+import "react-native-reanimated";
+import { QueryProvider } from "@/lib/QueryProvider";
 
 export default function RootLayout() {
-  const colorScheme = useColorScheme();
+  const [loaded] = useFonts({
+    bold: require("../assets/fonts/Poppins-Bold.ttf"),
+    medium: require("../assets/fonts/Poppins-Medium.ttf"),
+    semibold: require("../assets/fonts/Poppins-SemiBold.ttf"),
+    regular: require("../assets/fonts/Poppins-Light.ttf"),
+  });
+
+  if (!loaded) {
+    return (
+      <View
+        style={{
+          flex: 1,
+          justifyContent: "center",
+          alignItems: "center",
+          backgroundColor: "#0F0F23",
+        }}
+      >
+        <ActivityIndicator size="large" color="#fff" />
+        <Text style={{ marginTop: 10, color: "#FFFFFF", fontSize: 16 }}>
+          Loading...
+        </Text>
+      </View>
+    );
+  }
 
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="modal" options={{ presentation: 'modal', title: 'Modal' }} />
-      </Stack>
-      <StatusBar style="auto" />
-    </ThemeProvider>
+    <>
+
+        <QueryProvider>
+          <Stack
+            screenOptions={{
+              headerShown: false,
+              contentStyle: { backgroundColor: "#0F0F23" },
+            }}
+          >
+            {/* Default index route */}
+            <Stack.Screen name="index" options={{ headerShown: false }} />
+
+            {/* Main app tabs */}
+            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+            <Stack.Screen name="auth" />
+
+            <Stack.Screen name="+not-found" options={{ headerShown: false }} />
+          </Stack>
+          <StatusBar style="light" />
+        </QueryProvider>
+
+    </>
   );
 }
