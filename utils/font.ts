@@ -1,0 +1,18 @@
+export const FONTS = {
+  regular: 'Poppins-Regular',
+  medium: 'Poppins-Medium',
+  semibold: 'Poppins-SemiBold',
+  bold: 'Poppins-Bold',
+  light: 'Poppins-Light',
+  thin: 'Poppins-Thin',
+  black: 'Poppins-Black',
+  extraBold: 'Poppins-ExtraBold',
+  italic: 'Poppins-Italic',
+  lightItalic: 'Poppins-LightItalic',
+  mediumItalic: 'Poppins-MediumItalic',
+  boldItalic: 'Poppins-BoldItalic',
+  semiBoldItalic: 'Poppins-SemiBoldItalic',
+  extraBoldItalic: 'Poppins-ExtraBoldItalic',
+  thinItalic: 'Poppins-ThinItalic',
+  blackItalic: 'Poppins-BlackItalic',
+};
