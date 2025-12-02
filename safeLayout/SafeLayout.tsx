@@ -3,7 +3,7 @@ import React from 'react';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, ViewStyle } from 'react-native';
-import { Colors } from '@/constants/color';
+
 
 interface SafeLayoutProps {
   children: React.ReactNode;
@@ -16,8 +16,8 @@ interface SafeLayoutProps {
 const SafeLayout: React.FC<SafeLayoutProps> = ({
   children,
   backgroundColor = "#fff",
-  statusBarStyle = 'dark',
-  statusBarBackgroundColor = '#FFFFFF',
+  statusBarStyle = 'light',
+  statusBarBackgroundColor = '#053014',
   style,
 }) => {
   return (

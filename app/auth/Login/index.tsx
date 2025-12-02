@@ -2,15 +2,15 @@ import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import Login from '@/src/screens/auth/login/Login'
 import SafeLayout from '@/safeLayout/SafeLayout'
-import OnboardingSide from '@/src/screens/onboarding/Onboarding'
 
 const index = () => {
   return (
+    <SafeLayout>
 
-
-    <View style={{flex:1, justifyContent:'center', alignItems:'center', backgroundColor:'#fff'}}>
-<OnboardingSide  />
+    <View style={{flex:1, }}>
+     <Login />
     </View>
+    </SafeLayout>
   )
 }
 
