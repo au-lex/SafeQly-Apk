@@ -11,6 +11,7 @@ import { Ionicons, Feather } from "@expo/vector-icons";
 import DashboardHeader from "./DashHeader";
 import { COLORS } from "@/utils/colors";
 import { FONTS } from "@/utils/font";
+import { useRouter } from "expo-router";
 
 interface Transaction {
   id: string;
@@ -30,6 +31,7 @@ interface RecentUser {
 }
 
 const Dashboard: React.FC = () => {
+  const router = useRouter();
   const [showBalance, setShowBalance] = useState(true);
 
   const transactions: Transaction[] = [
@@ -159,7 +161,7 @@ const Dashboard: React.FC = () => {
 
         {/* New Escrow Button */}
         <View style={styles.escrowButtonContainer}>
-          <TouchableOpacity style={styles.escrowButton}>
+          <TouchableOpacity onPress={() => router.push('/newEscrow/enterTag')} style={styles.escrowButton}>
             <Text style={styles.escrowButtonText}>New Escrow Transaction</Text>
             <Ionicons name="arrow-forward" size={16} color="#053014" />
           </TouchableOpacity>
