@@ -35,7 +35,7 @@ export default function TabLayout() {
             case "Home":
               SvgComponent = HomeSvg;
               break;
-            case "Discover":
+            case "Escrow":
               SvgComponent = EscrowSvg;
               break;
             case "Saved":
@@ -75,7 +75,7 @@ export default function TabLayout() {
       })}
     >
       <Tabs.Screen name="Home" options={{ title: "Home" }} />
-      <Tabs.Screen name="Discover" options={{ title: "Escrow" }} />
+      <Tabs.Screen name="Escrow" options={{ title: "Escrow" }} />
       <Tabs.Screen name="Saved" options={{ title: "Transactions" }} />
       <Tabs.Screen name="Profile" options={{ title: "Settings" }} />
     </Tabs>
