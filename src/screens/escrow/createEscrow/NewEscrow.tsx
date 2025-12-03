@@ -13,6 +13,8 @@ import {
 import { Ionicons } from '@expo/vector-icons';
 import * as DocumentPicker from 'expo-document-picker';
 import TransactionSummaryModal from '../escrowModal/Summary';
+import { COLORS } from "@/utils/colors";
+import { FONTS } from "@/utils/font";
 
 interface UserInfo {
   name: string;

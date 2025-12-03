@@ -1,5 +1,7 @@
 export const COLORS = {
   pri: "#053014",
+  priLight: "#0E3B1F",
+  
   bg: "#F8FAFC",
   white: "#FFFFFF",
   text: "#1C2A3A",
