@@ -8,6 +8,8 @@ import {
   Image,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { COLORS } from "@/utils/colors";
+import { FONTS } from "@/utils/font";
 
 interface UserInfo {
   name: string;
@@ -122,7 +124,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 0,
   },
   summaryModal: {
-    backgroundColor: '#FFFFFF',
+    backgroundColor: COLORS.white,
     borderTopLeftRadius: 24,
     borderTopRightRadius: 24,
     padding: 24,
@@ -136,9 +138,9 @@ const styles = StyleSheet.create({
   },
   modalTitle: {
     fontSize: 18,
-    fontWeight: '700',
+
     color: '#111827',
-    fontFamily: 'Poppins-Bold',
+    fontFamily: FONTS.semibold
   },
   summaryAmount: {
     alignItems: 'center',
@@ -152,9 +154,9 @@ const styles = StyleSheet.create({
   },
   summaryAmountValue: {
     fontSize: 32,
-    fontWeight: '700',
+
     color: '#111827',
-    fontFamily: 'Poppins-Bold',
+    fontFamily: FONTS.semibold
   },
   summaryUserRow: {
     flexDirection: 'row',
@@ -173,7 +175,7 @@ const styles = StyleSheet.create({
     height: 40,
     borderRadius: 20,
     borderWidth: 2,
-    borderColor: '#FFFFFF',
+    borderColor: COLORS.white,
   },
   summaryAvatarOverlap: {
     marginLeft: -12,
@@ -208,7 +210,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: '700',
     color: '#111827',
-    fontFamily: 'Poppins-Bold',
+    fontFamily: FONTS.semibold
   },
   summaryRow: {
     flexDirection: 'row',
@@ -218,8 +220,8 @@ const styles = StyleSheet.create({
   summaryIconContainer: {
     width: 36,
     height: 36,
-    borderRadius: 18,
-    backgroundColor: '#EFF6FF',
+    borderRadius: 38,
+    backgroundColor: COLORS.pri,
     justifyContent: 'center',
     alignItems: 'center',
     marginRight: 12,
@@ -232,23 +234,23 @@ const styles = StyleSheet.create({
   },
   summaryValue: {
     fontSize: 14,
-    fontWeight: '600',
+
     color: '#111827',
     fontFamily: 'Poppins-SemiBold',
     maxWidth: '40%',
   },
   finalConfirmButton: {
-    backgroundColor: '#3B82F6',
+    backgroundColor: COLORS.pri,
     paddingVertical: 16,
     borderRadius: 12,
     alignItems: 'center',
     marginTop: 8,
   },
   confirmButtonText: {
-    color: '#FFFFFF',
+    color: COLORS.white,
     fontSize: 15,
-    fontWeight: '700',
-    fontFamily: 'Poppins-Bold',
+
+    fontFamily: FONTS.semibold
   },
 });
 

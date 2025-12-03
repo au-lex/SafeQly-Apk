@@ -12,6 +12,8 @@ import {
 import { Ionicons } from '@expo/vector-icons';
 import ConfirmUserModal from '../escrowModal/ConfirmUser';
 import { useRouter } from 'expo-router';
+import { COLORS } from "@/utils/colors";
+import { FONTS } from "@/utils/font";
 
 interface UserInfo {
   name: string;
@@ -56,7 +58,7 @@ const EnterTagScreen: React.FC = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <StatusBar barStyle="dark-content" backgroundColor="#FFFFFF" />
+
       
       {/* Header */}
       <View style={styles.header}>
@@ -114,7 +116,7 @@ const EnterTagScreen: React.FC = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F9FAFB',
+    backgroundColor: COLORS.white,
   },
   header: {
     flexDirection: 'row',
@@ -122,7 +124,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingHorizontal: 16,
     paddingVertical: 16,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: COLORS.white,
     borderBottomWidth: 1,
     borderBottomColor: '#F3F4F6',
   },
@@ -153,7 +155,7 @@ const styles = StyleSheet.create({
   inputContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#FFFFFF',
+    backgroundColor: COLORS.white,
     borderRadius: 12,
     paddingHorizontal: 16,
     paddingVertical: 16,
@@ -174,12 +176,12 @@ const styles = StyleSheet.create({
   },
   bottomContainer: {
     padding: 24,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: COLORS.white,
     borderTopWidth: 1,
     borderTopColor: '#F3F4F6',
   },
   primaryButton: {
-    backgroundColor: '#3B82F6',
+    backgroundColor: COLORS.pri,
     paddingVertical: 16,
     borderRadius: 12,
     alignItems: 'center',

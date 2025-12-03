@@ -8,6 +8,8 @@ import {
   Image,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { COLORS } from "@/utils/colors";
+import { FONTS } from "@/utils/font";
 
 interface UserInfo {
   name: string;
@@ -80,12 +82,12 @@ const ConfirmUserModal: React.FC<ConfirmUserModalProps> = ({
 const styles = StyleSheet.create({
   modalOverlay: {
     flex: 1,
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    backgroundColor: 'rgba(0, 0, 0, 0.2)',
     justifyContent: 'flex-end',
     paddingHorizontal: 0,
   },
   modalContent: {
-    backgroundColor: '#FFFFFF',
+    backgroundColor: COLORS.white,
     borderTopLeftRadius: 24,
     borderTopRightRadius: 24,
     padding: 24,
@@ -99,9 +101,9 @@ const styles = StyleSheet.create({
   },
   modalTitle: {
     fontSize: 18,
-    fontWeight: '700',
+
     color: '#111827',
-    fontFamily: 'Poppins-Bold',
+    fontFamily:FONTS.semibold,
   },
   modalUserInfo: {
     flexDirection: 'row',
@@ -120,13 +122,13 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '600',
     color: '#111827',
-    fontFamily: 'Poppins-SemiBold',
+    fontFamily: FONTS.medium,
   },
   modalUserTag: {
     fontSize: 13,
     color: '#6B7280',
     marginTop: 2,
-    fontFamily: 'Poppins-Regular',
+    fontFamily: FONTS.light,
   },
   modalButtons: {
     flexDirection: 'row',
@@ -143,20 +145,20 @@ const styles = StyleSheet.create({
     color: '#374151',
     fontSize: 15,
     fontWeight: '600',
-    fontFamily: 'Poppins-SemiBold',
+    fontFamily: FONTS.medium,
   },
   confirmButton: {
     flex: 1,
-    backgroundColor: '#3B82F6',
+    backgroundColor:COLORS.pri,
     paddingVertical: 14,
     borderRadius: 12,
     alignItems: 'center',
   },
   confirmButtonText: {
-    color: '#FFFFFF',
+    color: COLORS.white,
     fontSize: 15,
-    fontWeight: '700',
-    fontFamily: 'Poppins-Bold',
+
+    fontFamily:FONTS.semibold,
   },
 });
 
