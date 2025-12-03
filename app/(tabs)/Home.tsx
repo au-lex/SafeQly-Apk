@@ -1,11 +1,16 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
+import SafeLayout from '@/safeLayout/SafeLayout'
+import Dashboard from '@/src/screens/dashboard/Dashboard'
 
 const index = () => {
   return (
-    <View>
-      <Text>index</Text>
+    <SafeLayout>
+
+    <View style={{flex:1, }}>
+<Dashboard />
     </View>
+    </SafeLayout>
   )
 }
 
