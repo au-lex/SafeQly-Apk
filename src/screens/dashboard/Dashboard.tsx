@@ -353,7 +353,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: COLORS.pri,
     paddingVertical: 16,
-    borderRadius: 12,
+    borderRadius: 8,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
@@ -386,15 +386,14 @@ const styles = StyleSheet.create({
   userImageContainer: {
     width: 56,
     height: 56,
-    borderRadius: 28,
-    borderWidth: 2,
-    borderColor: COLORS.pri,
-    overflow: "hidden",
+    borderRadius: 58,
+
     marginBottom: 8,
   },
   userImage: {
     width: "100%",
     height: "100%",
+    borderRadius: 58,
   },
   userName: {
     fontSize: 12,
