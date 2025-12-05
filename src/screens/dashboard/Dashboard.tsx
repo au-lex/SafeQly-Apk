@@ -6,13 +6,17 @@ import {
   TouchableOpacity,
   Image,
   StyleSheet,
+  StatusBar,
+
 } from "react-native";
-import { Ionicons, Feather } from "@expo/vector-icons";
+import { Ionicons, Feather, MaterialCommunityIcons } from "@expo/vector-icons";
+import { LinearGradient } from "expo-linear-gradient";
 import DashboardHeader from "./DashHeader";
 import { COLORS } from "@/utils/colors";
 import { FONTS } from "@/utils/font";
 import { useRouter } from "expo-router";
 
+// === MOCK DATA ===
 interface Transaction {
   id: string;
   fullName: string;
@@ -65,184 +69,221 @@ const Dashboard: React.FC = () => {
       direction: "in",
       image: "https://i.pravatar.cc/150?img=3",
     },
-    {
-      id: "4",
-      fullName: "Jessica Williams",
-      phoneNumber: "+234 909 000 1111",
-      amount: 49.0,
-      dateTime: "Oct 21, 2025 • 09:15 AM",
-      status: "failed",
-      direction: "out",
-      image: "https://i.pravatar.cc/150?img=4",
-    },
-    {
-      id: "5",
-      fullName: "Daniel Brown",
-      phoneNumber: "+234 802 333 4444",
-      amount: 49.0,
-      dateTime: "Oct 20, 2025 • 06:45 PM",
-      status: "active",
-      direction: "out",
-      image: "https://i.pravatar.cc/150?img=5",
-    },
   ];
 
   const recentUsers: RecentUser[] = [
     { id: "u1", name: "Michael", image: "https://i.pravatar.cc/150?img=60" },
+
     { id: "u2", name: "Sarah", image: "https://i.pravatar.cc/150?img=44" },
+
     { id: "u3", name: "David", image: "https://i.pravatar.cc/150?img=12" },
+
     { id: "u4", name: "Jessica", image: "https://i.pravatar.cc/150?img=5" },
+
     { id: "u5", name: "Daniel", image: "https://i.pravatar.cc/150?img=33" },
+
+    { id: "add", name: "Add New", image: "" },
   ];
 
-  const getStatusStyle = (status: string) => {
+  const getStatusColor = (status: string) => {
     switch (status) {
       case "completed":
-        return { bg: "#D1FAE5", text: "#065F46" };
+        return "#053014";
       case "pending":
-        return { bg: "#FEF3C7", text: "#92400E" };
+        return "#F59E0B";
       case "failed":
-        return { bg: "#FEE2E2", text: "#991B1B" };
+        return "#EF4444";
       case "active":
-        return { bg: "#DBEAFE", text: "#1E40AF" };
+        return "#3B82F6";
       default:
-        return { bg: "#F3F4F6", text: "#374151" };
+        return "#6B7280";
     }
   };
 
   return (
     <View style={styles.container}>
-      <DashboardHeader />
+      {/* Transparent Status Bar to let Gradient show through */}
+      <StatusBar
+        barStyle="light-content"
+        backgroundColor="transparent"
+        translucent={true}
+      />
 
       <ScrollView
-        style={styles.scrollView}
         showsVerticalScrollIndicator={false}
+        contentContainerStyle={{ paddingBottom: 0 }}
       >
-        {/* Balance Card */}
-        <View style={styles.balanceCard}>
-          <View style={styles.balanceHeader}>
-            <Text style={styles.balanceLabel}>Total Balance</Text>
-          </View>
+        {/* === HERO SECTION === */}
+        <LinearGradient
+          colors={[COLORS.pri, "#042f2e", "#000000"]}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 1 }}
+          style={styles.heroGradient}
+        >
+          {/* Header Component */}
+          <DashboardHeader />
 
-          <View style={styles.balanceAmount}>
-            <Text style={styles.balanceText}>
-              {showBalance ? "$22,060.00" : "•••••••"}
-            </Text>
-            <TouchableOpacity onPress={() => setShowBalance(!showBalance)}>
-              {showBalance ? (
-                <Ionicons name="eye-outline" size={24} color="#9CA3AF" />
-              ) : (
-                <Ionicons name="eye-off-outline" size={24} color="#9CA3AF" />
-              )}
-            </TouchableOpacity>
-          </View>
+          {/* Wallet Content */}
+          <View style={styles.walletContainer}>
+            {/* Top Row: Verified Badge & Tag */}
+            <View style={styles.walletHeaderRow}>
+              <View style={styles.verifiedBadge}>
+                <MaterialCommunityIcons
+                  name="shield-check"
+                  size={14}
+                  color="#4ADE80"
+                />
+                <Text style={styles.verifiedText}>Verified</Text>
+              </View>
 
-          {/* Action Buttons */}
-          <View style={styles.actionButtons}>
-            <TouchableOpacity style={styles.primaryButton}>
-              <Ionicons name="add" size={20} color="#FFFFFF" />
-              <Text style={styles.primaryButtonText}>Fund Wallet</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.secondaryButton}>
-              <Feather name="download" size={20} color="#053014" />
-              <Text style={styles.secondaryButtonText}>Withdraw</Text>
-            </TouchableOpacity>
-          </View>
+              <View style={styles.glassTag}>
+                <Text style={styles.tagText}>@Tag32Gb6</Text>
+                <Ionicons
+                  name="copy-outline"
+                  size={12}
+                  color="rgba(255,255,255,0.7)"
+                />
+              </View>
+            </View>
 
-          {/* Tag Section */}
-          <View style={styles.tagSection}>
-            <Text style={styles.tagText}>Tag32Gb6</Text>
-            <TouchableOpacity style={styles.copyButton}>
-              <Text style={styles.copyButtonText}>Copy Tag</Text>
-              <Ionicons name="copy-outline" size={14} color="#053014" />
-            </TouchableOpacity>
-          </View>
-        </View>
-
-        {/* New Escrow Button */}
-        <View style={styles.escrowButtonContainer}>
-          <TouchableOpacity onPress={() => router.push('/newEscrow/enterTag')} style={styles.escrowButton}>
-            <Text style={styles.escrowButtonText}>New Escrow Transaction</Text>
-            <Ionicons name="arrow-forward" size={16} color="#053014" />
-          </TouchableOpacity>
-        </View>
-
-        {/* Quick Transfer */}
-        <View style={styles.quickTransferCard}>
-          <Text style={styles.sectionTitle}>Quick Transfer</Text>
-          <ScrollView
-            horizontal
-            showsHorizontalScrollIndicator={false}
-            style={styles.userScroll}
-          >
-            {recentUsers.map((user) => (
-              <TouchableOpacity key={user.id} style={styles.userItem}>
-                <View style={styles.userImageContainer}>
-                  <Image
-                    source={{ uri: user.image }}
-                    style={styles.userImage}
+            {/* Main Balance */}
+            <View style={styles.balanceBlock}>
+              <View style={styles.balanceLabelRow}>
+                <Text style={styles.balanceLabel}>Total Balance</Text>
+                <TouchableOpacity
+                  onPress={() => setShowBalance(!showBalance)}
+                  style={styles.eyeBtn}
+                >
+                  <Ionicons
+                    name={showBalance ? "eye" : "eye-off"}
+                    size={18}
+                    color="rgba(255,255,255,0.6)"
                   />
-                </View>
-                <Text style={styles.userName}>{user.name}</Text>
-              </TouchableOpacity>
-            ))}
-          </ScrollView>
-        </View>
+                </TouchableOpacity>
+              </View>
 
-        {/* Transaction History */}
-        <View style={styles.transactionCard}>
-          <View style={styles.transactionHeader}>
-            <Text style={styles.sectionTitle}>Transaction History</Text>
-            <TouchableOpacity>
-              <Text style={styles.viewAllText}>View All</Text>
-            </TouchableOpacity>
+              <Text style={styles.balanceText}>
+                {showBalance ? "$22,060.00" : "$•••••••"}
+              </Text>
+            </View>
+
+            {/* === RESTORED GLASS PILL ACTIONS === */}
+            <View style={styles.glassActionRow}>
+              <TouchableOpacity style={styles.glassBtn}>
+                <Ionicons name="add" size={20} color="#FFF" />
+                <Text style={styles.glassBtnText}>Add</Text>
+              </TouchableOpacity>
+
+              <View style={styles.divider} />
+
+              <TouchableOpacity style={styles.glassBtn}>
+                <Feather name="arrow-up-right" size={20} color="#FFF" />
+                <Text style={styles.glassBtnText}>Send</Text>
+              </TouchableOpacity>
+
+              <View style={styles.divider} />
+
+              <TouchableOpacity
+                style={styles.glassBtn}
+                onPress={() => router.push("/newEscrow/enterTag")}
+              >
+                <MaterialCommunityIcons
+                  name="shield-check-outline"
+                  size={20}
+                  color="#FFF"
+                />
+                <Text style={styles.glassBtnText}>Escrow</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </LinearGradient>
+
+        {/* === WHITE BODY === */}
+        <View style={styles.bodyContainer}>
+          {/* Quick Transfer */}
+          <View style={styles.sectionContainer}>
+            <Text style={[styles.sectionTitle, { paddingLeft:20 }]}>Quick Escrow</Text>
+
+            <ScrollView
+              horizontal
+              showsHorizontalScrollIndicator={false}
+              contentContainerStyle={styles.recentList}
+            >
+              <TouchableOpacity style={styles.recentUserItem}>
+                <View style={styles.addUserCircle}>
+                  <Ionicons name="add" size={24} color={COLORS.pri} />
+                </View>
+
+                <Text style={styles.recentUserName}>Add</Text>
+              </TouchableOpacity>
+
+              {recentUsers
+                .filter((u) => u.id !== "add")
+                .map((user) => (
+                  <TouchableOpacity key={user.id} style={styles.recentUserItem}>
+                    <Image
+                      source={{ uri: user.image }}
+                      style={styles.recentUserImage}
+                    />
+
+                    <Text style={styles.recentUserName} numberOfLines={1}>
+                      {user.name}
+                    </Text>
+                  </TouchableOpacity>
+                ))}
+            </ScrollView>
           </View>
 
-          <View style={styles.transactionList}>
-            {transactions.map((tx) => {
-              const statusStyle = getStatusStyle(tx.status);
-              return (
-                <TouchableOpacity key={tx.id} style={styles.transactionItem}>
-                  <View style={styles.transactionLeft}>
+          {/* Transactions List */}
+          <View style={styles.transactionsContainer}>
+            <View style={styles.sheetHeader}>
+              <Text style={styles.sectionTitle}>Recent Activity</Text>
+              <TouchableOpacity>
+                <Text style={styles.seeAllText}>See All</Text>
+              </TouchableOpacity>
+            </View>
+
+            {transactions.map((tx) => (
+              <TouchableOpacity key={tx.id} style={styles.txItem}>
+                <View style={styles.txLeft}>
+                  <View style={styles.avatarContainer}>
                     <Image
                       source={{ uri: tx.image }}
-                      style={styles.transactionImage}
+                      style={styles.avatarImage}
                     />
-                    <View style={styles.transactionInfo}>
-                      <Text style={styles.transactionName} numberOfLines={1}>
-                        {tx.fullName}
-                      </Text>
-                      <Text style={styles.transactionPhone} numberOfLines={1}>
-                        {tx.phoneNumber}
-                      </Text>
-                    </View>
-                  </View>
-
-                  <View style={styles.transactionRight}>
-                    <Text
-                      style={[
-                        styles.transactionAmount,
-                        tx.direction === "in" && styles.amountIn,
-                      ]}
-                    >
-                      {tx.direction === "in" ? "+" : "-"}${tx.amount.toFixed(2)}
-                    </Text>
                     <View
                       style={[
-                        styles.statusBadge,
-                        { backgroundColor: statusStyle.bg },
+                        styles.statusDot,
+                        { backgroundColor: getStatusColor(tx.status) },
                       ]}
-                    >
-                      <Text
-                        style={[styles.statusText, { color: statusStyle.text }]}
-                      >
-                        {tx.status.toUpperCase()}
-                      </Text>
-                    </View>
+                    />
                   </View>
-                </TouchableOpacity>
-              );
-            })}
+                  <View style={styles.txInfo}>
+                    <Text style={styles.txName}>{tx.fullName}</Text>
+                    <Text style={styles.txDate}>{tx.dateTime}</Text>
+                  </View>
+                </View>
+
+                <View style={styles.txRight}>
+                  <Text
+                    style={[
+                      styles.txAmount,
+                      { color: tx.direction === "in" ? "#053014" : "#111827" },
+                    ]}
+                  >
+                    {tx.direction === "in" ? "+" : "-"}${tx.amount.toFixed(2)}
+                  </Text>
+                  <Text
+                    style={[
+                      styles.txStatus,
+                      { color: getStatusColor(tx.status) },
+                    ]}
+                  >
+                    {tx.status}
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            ))}
           </View>
         </View>
       </ScrollView>
@@ -255,230 +296,248 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: COLORS.bg,
   },
-  scrollView: {
-    flex: 1,
-  },
-  balanceCard: {
-    backgroundColor: COLORS.white,
-    padding: 24,
-    marginBottom: 16,
-  },
-  balanceHeader: {
-    marginBottom: 2,
-  },
-  balanceLabel: {
-    fontSize: 14,
 
-    color: "#6B7280",
-    fontFamily: FONTS.medium,
-  },
-  balanceAmount: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-    marginBottom: 8,
-  },
-  balanceText: {
-    fontSize: 36,
+  // === HERO GRADIENT ===
+  heroGradient: {
+    paddingBottom: 30,
 
-    color: "#111827",
-    fontFamily: FONTS.semibold,
   },
-  actionButtons: {
-    flexDirection: "row",
-    gap: 12,
-    marginBottom: 16,
+  walletContainer: {
+    paddingHorizontal: 24,
+    paddingTop: 12,
   },
-  primaryButton: {
-    flex: 1,
-    backgroundColor: COLORS.pri,
-    paddingVertical: 14,
-    paddingHorizontal: 16,
-    borderRadius: 12,
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-    gap: 8,
-  },
-  primaryButtonText: {
-    color: "#FFFFFF",
-    fontSize: 14,
-    fontFamily: FONTS.medium,
-  },
-  secondaryButton: {
-    flex: 1,
-    backgroundColor: "#F3F4F6",
-    paddingVertical: 14,
-    paddingHorizontal: 16,
-    borderRadius: 12,
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-    gap: 8,
-  },
-  secondaryButtonText: {
-    color: "#374151",
-    fontSize: 14,
-    fontWeight: "600",
-    fontFamily: FONTS.medium,
-  },
-  tagSection: {
+
+  // === WALLET TOP ROW ===
+  walletHeaderRow: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    paddingTop: 8,
+    marginBottom: 24,
+  },
+  verifiedBadge: {
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: "rgba(74, 222, 128, 0.15)",
+    paddingVertical: 6,
+    paddingHorizontal: 10,
+    borderRadius: 20,
+    borderWidth: 1,
+    borderColor: "rgba(74, 222, 128, 0.3)",
+    gap: 6,
+  },
+  verifiedText: {
+    color: "#4ADE80",
+    fontSize: 12,
+    fontFamily: FONTS.medium,
+  },
+  glassTag: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 6,
+    backgroundColor: "rgba(255,255,255,0.1)",
+    paddingVertical: 6,
+    paddingHorizontal: 12,
+    borderRadius: 100,
   },
   tagText: {
-    fontSize: 14,
-
-    color: COLORS.pri,
+    color: "rgba(255,255,255,0.8)",
+    fontSize: 12,
     fontFamily: FONTS.medium,
   },
-  copyButton: {
+
+  // === BALANCE BLOCK ===
+  balanceBlock: {
+    marginBottom: 12,
+  },
+  balanceLabelRow: {
     flexDirection: "row",
     alignItems: "center",
-    gap: 4,
+    gap: 8,
+    // marginBottom: 8,
   },
-  copyButtonText: {
-    fontSize: 12,
-    color: COLORS.pri,
-    fontFamily: FONTS.medium,
+  balanceLabel: {
+    color: "rgba(255,255,255,0.7)",
+    fontSize: 15,
+    fontFamily: FONTS.light,
   },
-  escrowButtonContainer: {
-    paddingHorizontal: 24,
-    marginBottom: 16,
+  eyeBtn: {
+    padding: 4,
   },
-  escrowButton: {
-    backgroundColor: COLORS.white,
+  balanceText: {
+    color: "#FFF",
+    fontSize: 42,
+    fontFamily: FONTS.bold,
+    letterSpacing: -0.5,
+  },
+
+  // === GLASS ACTION ROW (Restored) ===
+  glassActionRow: {
+    flexDirection: "row",
+    backgroundColor: "rgba(255,255,255,0.15)",
+    borderRadius: 100,
+    padding: 6,
     borderWidth: 1,
-    borderColor: COLORS.pri,
-    paddingVertical: 16,
-    borderRadius: 8,
+    borderColor: "rgba(255,255,255,0.1)",
+  },
+  glassBtn: {
+    flex: 1,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
+    paddingVertical: 14,
     gap: 8,
   },
-  escrowButtonText: {
-    color: COLORS.pri,
+  glassBtnText: {
+    color: "#FFF",
     fontSize: 14,
     fontFamily: FONTS.semibold,
   },
-  quickTransferCard: {
-    backgroundColor: COLORS.white,
-    padding: 24,
-    marginBottom: 16,
+  divider: {
+    width: 1,
+    backgroundColor: "rgba(255,255,255,0.15)",
+    marginVertical: 10,
+  },
+
+  // === BODY ===
+  bodyContainer: {
+    marginTop: 24,
+    backgroundColor: COLORS.bg,
+  },
+  sectionContainer: {
+    marginBottom: 24,
   },
   sectionTitle: {
     fontSize: 18,
-    fontFamily: FONTS.medium,
-    color: "#111827",
+    fontFamily: FONTS.semibold,
+    color: COLORS.pri,
+  
     marginBottom: 16,
   },
-  userScroll: {
-    flexDirection: "row",
+  recentList: {
+    paddingHorizontal: 16,
   },
-  userItem: {
+
+  recentUserItem: {
     alignItems: "center",
+
     marginRight: 16,
+
     width: 60,
   },
-  userImageContainer: {
-    width: 56,
-    height: 56,
-    borderRadius: 58,
 
-    marginBottom: 8,
-  },
-  userImage: {
-    width: "100%",
-    height: "100%",
-    borderRadius: 58,
-  },
-  userName: {
-    fontSize: 12,
+  recentUserImage: {
+    width: 52,
 
-    color: "#111827",
-    textAlign: "center",
+    height: 52,
+
+    borderRadius: 20,
+
+    marginBottom: 6,
+  },
+
+  addUserCircle: {
+    width: 52,
+
+    height: 52,
+
+    borderRadius: 20,
+
+    marginBottom: 6,
+
+    backgroundColor: "#F3F4F6",
+
+    justifyContent: "center",
+
+    alignItems: "center",
+  },
+
+  recentUserName: {
+    fontSize: 11,
+
+    color: "#4B5563",
+
     fontFamily: FONTS.medium,
+
+    textAlign: "center",
   },
-  transactionCard: {
-    backgroundColor: COLORS.white,
-    padding: 24,
-    marginBottom: 10,
+
+  // === TRANSACTIONS ===
+  transactionsContainer: {
+    backgroundColor: "#FFF",
+    borderTopLeftRadius: 32,
+    borderTopRightRadius: 32,
+    paddingTop: 24,
+    paddingHorizontal: 24,
+    minHeight: 400,
+    paddingBottom: 50,
   },
-  transactionHeader: {
+  sheetHeader: {
     flexDirection: "row",
     justifyContent: "space-between",
-    alignItems: "center",
-    marginBottom: 16,
+    // alignItems: "center",
+    marginBottom: 10,
+
   },
-  viewAllText: {
-    fontSize: 14,
+  seeAllText: {
     color: COLORS.pri,
     fontFamily: FONTS.medium,
+    fontSize: 14,
   },
-  transactionList: {
-    gap: 16,
-  },
-  transactionItem: {
+  txItem: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    paddingBottom: 16,
-    borderBottomWidth: 1,
-    borderBottomColor: "#F3F4F6",
+    marginBottom: 24,
   },
-  transactionLeft: {
+  txLeft: {
     flexDirection: "row",
     alignItems: "center",
-    flex: 1,
-    marginRight: 12,
+    gap: 14,
   },
-  transactionImage: {
+  avatarContainer: {
+    position: "relative",
+  },
+  avatarImage: {
     width: 48,
     height: 48,
-    borderRadius: 24,
-    marginRight: 12,
-    borderWidth: 1,
-    borderColor: "#F3F4F6",
+    borderRadius: 16,
+    backgroundColor: "#F3F4F6",
   },
-  transactionInfo: {
-    flex: 1,
+  statusDot: {
+    width: 10,
+    height: 10,
+    borderRadius: 5,
+    position: "absolute",
+    bottom: -2,
+    right: -2,
+    borderWidth: 2,
+    borderColor: "#FFF",
   },
-  transactionName: {
-    fontSize: 14,
-
-    color: "#111827",
-    marginBottom: 2,
+  txInfo: {
+    gap: 2,
+  },
+  txName: {
+    fontSize: 15,
     fontFamily: FONTS.medium,
+    color: "#111827",
   },
-  transactionPhone: {
+  txDate: {
     fontSize: 12,
-    color: "#9CA3AF",
     fontFamily: FONTS.light,
+    color: "#9CA3AF",
   },
-  transactionRight: {
+  txRight: {
     alignItems: "flex-end",
+    gap: 2,
   },
-  transactionAmount: {
-    fontSize: 14,
-
-    color: "#111827",
-    marginBottom: 4,
-    fontFamily: FONTS.semibold,
+  txAmount: {
+    fontSize: 16,
+    fontFamily: FONTS.bold,
   },
-  amountIn: {
-    color: "#059669",
-  },
-  statusBadge: {
-    paddingHorizontal: 10,
-    paddingVertical: 4,
-    borderRadius: 12,
-  },
-  statusText: {
-    fontSize: 10,
+  txStatus: {
+    fontSize: 11,
     fontFamily: FONTS.medium,
+    textTransform: "capitalize",
   },
 });
 
