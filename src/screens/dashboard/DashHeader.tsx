@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, Image, TouchableOpacity, StyleSheet, Platform, StatusBar } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { COLORS } from '@/utils/colors';
 import { FONTS } from '@/utils/font';
@@ -49,7 +49,7 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = ({
         onPress={onNotificationPress}
         activeOpacity={0.7}
       >
-        <Ionicons name="notifications-outline" size={24} color="#111827" />
+        <Ionicons name="notifications-outline" size={24} color="#fff" />
         {notificationCount > 0 && (
           <View style={styles.notificationBadge}>
             <Text style={styles.notificationBadgeText}>
@@ -64,14 +64,14 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = ({
 
 const styles = StyleSheet.create({
   header: {
-    backgroundColor: COLORS.white,
+    // Transparent background
+    backgroundColor: 'transparent', 
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingHorizontal: 24,
-    paddingVertical: 16,
-    borderBottomWidth: 1,
-    borderBottomColor: '#F3F4F6',
+    paddingTop:19,
+    zIndex: 10,
   },
   headerLeft: {
     flexDirection: 'row',
@@ -82,24 +82,25 @@ const styles = StyleSheet.create({
     width: 48,
     height: 48,
     borderRadius: 24,
-
+    borderWidth: 2,
+    borderColor: 'rgba(255,255,255,0.2)',
   },
   greetingText: {
     fontSize: 13,
-    color: COLORS.text,
+    color: 'rgba(255,255,255,0.8)',
     fontFamily: FONTS.light,
-
   },
   profileName: {
     fontSize: 16,
-
-    color: COLORS.text,
+    color: COLORS.white,
     fontFamily: FONTS.medium,
     lineHeight: 20,
   },
   notificationButton: {
     position: 'relative',
     padding: 8,
+    backgroundColor: 'rgba(255,255,255,0.1)',
+    borderRadius: 12,
   },
   notificationBadge: {
     position: 'absolute',
@@ -112,7 +113,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderWidth: 2,
-    borderColor: '#FFFFFF',
+    borderColor: '#042f2e',
     paddingHorizontal: 4,
   },
   notificationBadgeText: {

@@ -6,6 +6,7 @@ import type { Transaction, TabType } from '@/types';
 import { useRouter } from 'expo-router';
 import { COLORS } from "@/utils/colors";
 import { FONTS } from "@/utils/font";
+import DashboardHeader from '../dashboard/DashHeader';
 
 const TransactionsScreen: React.FC = () => {
   const router = useRouter();
@@ -116,6 +117,7 @@ const TransactionsScreen: React.FC = () => {
 
   return (
     <View style={styles.container}>
+      {/* <DashboardHeader /> */}
       <View style={styles.innerContainer}>
         {/* Header */}
         <View style={styles.header}>
