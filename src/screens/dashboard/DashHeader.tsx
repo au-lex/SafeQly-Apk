@@ -4,6 +4,8 @@ import { Ionicons } from '@expo/vector-icons';
 import { COLORS } from '@/utils/colors';
 import { FONTS } from '@/utils/font';
 
+import { useRouter } from 'expo-router';
+
 interface DashboardHeaderProps {
   userName?: string;
   profileImage?: string;
@@ -27,8 +29,13 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = ({
     return 'Good Evening';
   };
 
+  const router = useRouter();
+
+
+
   return (
     <View style={styles.header}>
+            {/* <StatusBar barStyle="light-content" backgroundColor={COLORS.pri} /> */}
       <TouchableOpacity 
         style={styles.headerLeft} 
         onPress={onProfilePress}
@@ -46,7 +53,7 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = ({
 
       <TouchableOpacity 
         style={styles.notificationButton}
-        onPress={onNotificationPress}
+        onPress={() => router.push('/notification')}
         activeOpacity={0.7}
       >
         <Ionicons name="notifications-outline" size={24} color="#fff" />
