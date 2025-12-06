@@ -28,7 +28,7 @@ interface CreateEscrowScreenProps {
 
 const CreateEscrowScreen: React.FC<CreateEscrowScreenProps> = ({ userInfo }) => {
   const defaultUserInfo: UserInfo = {
-    name: 'Unknown User',
+    name: 'Abimbola David',
     tag: 'Tag000000',
     avatar: 'https://i.pravatar.cc/150?img=1',
   };
@@ -138,7 +138,7 @@ const CreateEscrowScreen: React.FC<CreateEscrowScreenProps> = ({ userInfo }) => 
             style={styles.uploadBox}
             onPress={handlePickDocument}
           >
-            <Ionicons name="add-circle" size={32} color="#3B82F6" />
+            <Ionicons name="add-circle" size={32} color={COLORS.pri} />
             <Text style={styles.uploadTitle}>
               Attach a file or image for evidence
             </Text>
@@ -190,8 +190,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingVertical: 16,
     backgroundColor: '#FFFFFF',
-    borderBottomWidth: 1,
-    borderBottomColor: '#F3F4F6',
+
   },
   backButton: {
     padding: 4,
@@ -200,7 +199,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: '600',
     color: '#111827',
-    fontFamily: 'Poppins-SemiBold',
+    fontFamily: FONTS.medium,
   },
   content: {
     flex: 1,
@@ -214,8 +213,7 @@ const styles = StyleSheet.create({
     padding: 16,
     borderRadius: 12,
     marginBottom: 24,
-    borderWidth: 1,
-    borderColor: '#E5E7EB',
+
   },
   avatar: {
     width: 48,
@@ -229,12 +227,12 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '600',
     color: '#111827',
-    fontFamily: 'Poppins-SemiBold',
+    fontFamily: FONTS.medium,
   },
   userTag: {
     fontSize: 13,
     color: '#6B7280',
-    fontFamily: 'Poppins-Regular',
+    fontFamily: FONTS.light,
   },
   section: {
     marginBottom: 24,
@@ -244,7 +242,7 @@ const styles = StyleSheet.create({
     fontWeight: '500',
     color: '#6B7280',
     marginBottom: 8,
-    fontFamily: 'Poppins-Medium',
+    fontFamily: FONTS.medium,
   },
   labelRow: {
     flexDirection: 'row',
@@ -255,19 +253,18 @@ const styles = StyleSheet.create({
   balance: {
     fontSize: 14,
     fontWeight: '600',
-    color: '#3B82F6',
-    fontFamily: 'Poppins-SemiBold',
+    color:  COLORS.pri,
+    fontFamily: FONTS.medium,
   },
   textArea: {
     backgroundColor: '#FFFFFF',
     borderRadius: 12,
     padding: 16,
-    borderWidth: 1,
-    borderColor: '#E5E7EB',
+
     fontSize: 16,
     color: '#111827',
     minHeight: 60,
-    fontFamily: 'Poppins-Regular',
+    fontFamily: FONTS.light,
   },
   inputContainer: {
     flexDirection: 'row',
@@ -276,25 +273,24 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     paddingHorizontal: 16,
     paddingVertical: 16,
-    borderWidth: 1,
-    borderColor: '#E5E7EB',
+
   },
   currency: {
     fontSize: 16,
     color: '#111827',
     fontWeight: '500',
     marginRight: 4,
-    fontFamily: 'Poppins-Medium',
+    fontFamily: FONTS.medium,
   },
   input: {
     flex: 1,
     fontSize: 16,
     color: '#111827',
-    fontFamily: 'Poppins-Regular',
+    fontFamily: FONTS.light,
   },
   uploadBox: {
     borderWidth: 2,
-    borderColor: '#3B82F6',
+    borderColor: COLORS.pri,
     borderStyle: 'dashed',
     borderRadius: 12,
     padding: 24,
@@ -307,26 +303,26 @@ const styles = StyleSheet.create({
     color: '#111827',
     marginTop: 12,
     textAlign: 'center',
-    fontFamily: 'Poppins-SemiBold',
+    fontFamily: FONTS.medium,
   },
   uploadSubtitle: {
     fontSize: 12,
     color: '#6B7280',
     marginTop: 4,
     textAlign: 'center',
-    fontFamily: 'Poppins-Regular',
+    fontFamily: FONTS.light,
   },
   uploadSize: {
     fontSize: 11,
     color: '#9CA3AF',
     marginTop: 2,
-    fontFamily: 'Poppins-Regular',
+    fontFamily:  FONTS.light,
   },
   attachedFile: {
     fontSize: 12,
     color: '#059669',
     marginTop: 8,
-    fontFamily: 'Poppins-Medium',
+    fontFamily: FONTS.medium,
   },
   bottomContainer: {
     padding: 24,
@@ -335,7 +331,7 @@ const styles = StyleSheet.create({
     borderTopColor: '#F3F4F6',
   },
   primaryButton: {
-    backgroundColor: '#3B82F6',
+    backgroundColor: COLORS.pri,
     paddingVertical: 16,
     borderRadius: 12,
     alignItems: 'center',
@@ -343,8 +339,8 @@ const styles = StyleSheet.create({
   primaryButtonText: {
     color: '#FFFFFF',
     fontSize: 16,
-    fontWeight: '700',
-    fontFamily: 'Poppins-Bold',
+
+    fontFamily: FONTS.semibold,
   },
 });
 

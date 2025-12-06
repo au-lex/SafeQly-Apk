@@ -80,7 +80,7 @@ const TransactionSummaryModal: React.FC<TransactionSummaryModalProps> = ({
 
           <View style={styles.summaryRow}>
             <View style={styles.summaryIconContainer}>
-              <Ionicons name="cash-outline" size={20} color="#3B82F6" />
+              <Ionicons name="cash-outline" size={20} color={COLORS.white} />
             </View>
             <Text style={styles.summaryLabel}>Transaction fee:</Text>
             <Text style={styles.summaryValue}>$20</Text>
@@ -88,7 +88,7 @@ const TransactionSummaryModal: React.FC<TransactionSummaryModalProps> = ({
 
           <View style={styles.summaryRow}>
             <View style={styles.summaryIconContainer}>
-              <Ionicons name="time-outline" size={20} color="#3B82F6" />
+              <Ionicons name="time-outline" size={20} color={COLORS.white} />
             </View>
             <Text style={styles.summaryLabel}>Est delivery date:</Text>
             <Text style={styles.summaryValue}>{deliveryDate || '2nd jan 2024'}</Text>
@@ -96,7 +96,7 @@ const TransactionSummaryModal: React.FC<TransactionSummaryModalProps> = ({
 
           <View style={styles.summaryRow}>
             <View style={styles.summaryIconContainer}>
-              <Ionicons name="cube-outline" size={20} color="#3B82F6" />
+              <Ionicons name="cube-outline" size={20} color={COLORS.white} />
             </View>
             <Text style={styles.summaryLabel}>Items:</Text>
             <Text style={styles.summaryValue} numberOfLines={1}>

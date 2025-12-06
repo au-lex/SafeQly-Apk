@@ -187,7 +187,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   disabledButton: {
-    backgroundColor: '#93C5FD',
+    backgroundColor: COLORS.gray100,
   },
 });
 

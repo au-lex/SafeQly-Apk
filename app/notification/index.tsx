@@ -1,14 +1,14 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import SafeLayout from '@/safeLayout/SafeLayout'
-import EscrowHome from '@/src/screens/escrow/manageEscrow/EscrowHome'
+import NotificationScreen from '@/src/screens/notification/Notification'
 
 const index = () => {
   return (
     <SafeLayout>
 
-    <View style ={{flex:1}}>
-   <EscrowHome />
+    <View style={{flex:1, }}>
+   <NotificationScreen />
     </View>
     </SafeLayout>
   )
